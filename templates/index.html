@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- <div class="col-5"  
+            style="
+            background-image: url('statics/img/logo.JPG');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+          ">
+            <h1>Josco</h1>
+            <img src="{{ url_for('static', filename='img/mountain.png') }}" alt="">
+            </div> -->
+            <div class="col-6">
+                <h1 class="mb-5 display-3 text-center">OCR</h1>
+                <form method="POST" enctype="multipart/form-data">
+                    <label for="">Selection l'image:</label>
+                    <input type="file" class="form-control mb-3" name="photo" required>
+                    <label for="">Le nom de l'image</label>
+                    <input id="input" type="text" class="form-control" name="img-name" placeholder="Enter image name"
+                        required>
+                    <div class="text-center">
+                        <input class="btn btn-dark mt-3" type="submit" value="Générer le text">
+                    </div>
+                </form>
+
+                {% with messages = get_flashed_messages() %}
+
+                    {% if messages %}
+
+                        {% for msg in messages %}
+                            <div class="alert alert-warning alert-dismissible alert-sm fade show mt-2" role="alert">
+                                <strong>{{ msg }}</strong> 
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                        {% endfor %}
+
+                    {% endif %}
+
+
+                {% endwith %}
+                <textarea name="" id="myInput" cols="60" rows="10" class="form-control mt-2">
+                    {{result}}
+                </textarea>
+
+                <!-- The button used to copy the text -->
+                <div class="text-center mt-3">
+                    <button class="btn btn-dark" onclick="myFunction()">Copy text</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+    </script>
+    <script>
+        function myFunction() {
+            /* Get the text field */
+            var copyText = document.getElementById("myInput");
+
+            /* Select the text field */
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+            /* Copy the text inside the text field */
+            document.execCommand("copy");
+
+            /* Alert the copied text */
+            alert("Text Copié");
+        }
+    </script>
+</body>
+<style>
+
+</style>
+
+</html>
